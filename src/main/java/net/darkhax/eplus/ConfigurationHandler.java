@@ -34,7 +34,7 @@ public final class ConfigurationHandler {
         curseFactor = config.getFloat("curseFactor", CATEGORY_GENERAL, 3f, 0f, 1024f, "A factor used to make curse enchantments like vanishing cost more to apply. By default they cost 3X more.");
         floatingBookBonus = config.getFloat("floatingBookPower", CATEGORY_GENERAL, 1F, 0F, 1024F, "The amount of enchantment power a floating book should give. Bookshelfs have 1 power.");
 
-        blacklistedItems = config.getStringList("blacklistedItems", "blacklist", new String[] {}, "A blacklist of items that can't be enchanted with this mod. Format is itemid#meta");
+        blacklistedItems = config.getStringList("blacklistedItems", "blacklist", new String[] {}, "A blacklist of items that can't be enchanted with this mod. Format is just itemid");
         blacklistedEnchantments = config.getStringList("blacklistedEnchantments", "blacklist", new String[] {}, "A blacklist of enchantments that are not available in E+. Format is just enchantmentid.");
 
         if (config.hasChanged()) {
@@ -48,7 +48,7 @@ public final class ConfigurationHandler {
 
             final ItemStack stack = StackUtils.createStackFromString(itemString);
 
-            if (stack != null && !stack.isEmpty()) {
+            if (!stack.isEmpty()) {
 
                 Blacklist.blacklist(stack);
             }
